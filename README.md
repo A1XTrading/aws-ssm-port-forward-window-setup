@@ -7,7 +7,7 @@ I have put together a PowerShell script that downloads and installs (if necessar
 
 After which it uses the provided configuration to start an AWS SSM PortForwarding session.
 
-## Run
+# Run
 
 Because we are running installers we require `Run As Administrator`. It will trigger all installers to appears as pop-up installer for full transparency.
 
@@ -37,6 +37,18 @@ These are the required contents of your JSON configuration file:
 ```
 
 This config would set up a port forwarding session from `localhost:4444` to `i-123456789abcdef:3389`.
+
+## Side-Note
+
+Of course this just wraps an `aws ssm start-session` call, so once everything is set up you can simply run for the same effect:
+
+```powershell
+aws ssm start-session `
+    --region $region `
+    --target $instanceId `
+    --document-name "AWS-StartPortForwardingSession" `
+    --parameters portNumber=$targetPort,localPortNumber=$localPort
+```
 
 # Combining with RDP
 
@@ -71,16 +83,4 @@ And then using those names in the RDP client allows each to have their own crede
 mstsc /v:machine1.local:4444
 # To this one
 mstsc /v:machine2.local:4445
-```
-
-# Side-Note
-
-Of course this just a wrapper for an `aws ssm start-session` call, so you can extract the key components and run independently for yourself:
-
-```bash
-aws ssm start-session \
-	--region $region \
-	--target $instanceId \
-	--document-name "AWS-StartPortForwardingSession" \
-	--parameters portNumber=$targetPort,localPortNumber=$localPort
 ```
