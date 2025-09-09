@@ -1,2 +1,5 @@
 # configuration file is json
 *.json
+# Installers
+*.exe
+*.msi
