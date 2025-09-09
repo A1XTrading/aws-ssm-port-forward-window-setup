@@ -9,7 +9,7 @@ After which it uses the provided configuration to start an AWS SSM PortForwardin
 
 ## Run
 
-You run it like this (of course `config.json` can be named as you like)
+Because we are running installers we require `Run As Administrator`.
 
 ```powershell
 .\windows-port-forward-setup-for-iam-user.ps1 -ConfigPath .\config.json
@@ -18,6 +18,8 @@ Starting session with SessionId: random-username-2njkkexivx7hubusxzyyz5lg3y
 Port 4444 opened for sessionId random-username-2njkkexivx7hubusxzyyz5lg3y.
 Waiting for connections...
 ```
+
+_of course `config.json` can be named as you like_
 
 ## Configuration
 
