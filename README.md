@@ -9,7 +9,7 @@ After which it uses the provided configuration to start an AWS SSM PortForwardin
 
 ## Run
 
-Because we are running installers we require `Run As Administrator`.
+Because we are running installers we require `Run As Administrator`. It will trigger all installers to appears as pop-up installer for full transparency.
 
 ```powershell
 .\windows-port-forward-setup-for-iam-user.ps1 -ConfigPath .\config.json
@@ -45,6 +45,33 @@ So open your RDP client and connect to `localhost:{$localPort}`, and provide the
 
 Voila, secure RDP without a publicly open port.
 This can also work with non-AWS machines but setting up AWS SSM Agent on the node and registering it as part of your fleet. Useful for hybrid or multi-cloud environments.
+
+## Windows: Multiple Connections with Different Credentials
+
+You may find (like us) that you want to run multiple RDP connections through this system. Whilst MacOS doesn't have an issue with storing credentials per `host:port` combination, We have found native **Windows** support for swapping between user credentials for different `locahost` ports to be non-existent.
+
+We found a workaround, which is the edit the `C:\Windows\System32\drivers\etc\hosts` file and give custom names for each of your connection, for example say you have 3 machines for each you want separate credentials:
+
+- Machine1 is using `localhost:4444`
+- Machine2 is using `localhost:4445`
+- Machine3 is using `localhost:4446`
+
+Therefore adding this to to bottom of the `hosts` file:
+
+```
+127.0.0.1     machine1.local
+127.0.0.1     machine2.local
+127.0.0.1     machine3.local
+```
+
+And then using those names in the RDP client allows each to have their own credentials saved, e.g.:
+
+```bash
+# This can default to a different set of credentials
+mstsc /v:machine1.local:4444
+# To this one
+mstsc /v:machine2.local:4445
+```
 
 # Side-Note
 
