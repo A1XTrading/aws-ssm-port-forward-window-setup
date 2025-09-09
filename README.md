@@ -23,6 +23,8 @@ _of course `config.json` can be named as you like_
 
 ## Configuration
 
+These are the required contents of your JSON configuration file:
+
 ```json
 {
   "accessKeyId": "XXXXXXX",
@@ -34,7 +36,7 @@ _of course `config.json` can be named as you like_
 }
 ```
 
-This will set up port forwarding from `localhost:4444` to `i-123456789abcdef:3389`.
+This config would set up a port forwarding session from `localhost:4444` to `i-123456789abcdef:3389`.
 
 # Combining with RDP
 
