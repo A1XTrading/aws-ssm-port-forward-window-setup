@@ -160,8 +160,6 @@ function Start-PortForward([object]$Cfg) {
   )
   Write-Host "Command: aws $($args -join ' ')"
   Write-Host ""
-  Write-Host "NOTE: Keep this window open while you are connected."
-  Write-Host ""
   # Start the session in the current console so the tunnel stays open
   & aws @args
 }
