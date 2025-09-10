@@ -56,7 +56,7 @@ Once the shell has output `Waiting for connections` you are now ready to connect
 So open your RDP client and connect to `localhost:{$localPort}`, and provide the usual credentials for that connection.
 
 Voila, secure RDP without a publicly open port.
-This can also work with non-AWS machines but setting up AWS SSM Agent on the node and registering it as part of your fleet. Useful for hybrid or multi-cloud environments.
+This can also work with non-AWS machines: set up AWS SSM Agent on the node and register it as part of your fleet. Useful for hybrid or multi-cloud environments.
 
 ## Windows: Multiple Connections with Different Credentials
 
